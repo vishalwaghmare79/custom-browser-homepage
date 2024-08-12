@@ -17,22 +17,22 @@ body {
     grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
     gap: 20px;
     max-width: 800px;
-    height: 37vh;
+    height: 260px; /* Adjust height to show exactly 2 rows of items */
     padding: 20px;
     position: relative;
     overflow-y: auto;
-    z-index: 2; 
+    z-index: 2;
+}
+
+/* Hide scrollbars */
+.container::-webkit-scrollbar {
+    display: none;
 }
 
 .container {
-    -ms-overflow-style: none;  
-    scrollbar-width: none; 
-  }
-  
-  .container::-webkit-scrollbar {
-    display: none; 
-  }
-  
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+}
 
 .particle {
     position: absolute;
@@ -42,7 +42,6 @@ body {
     z-index: 1; 
     transform: translate(-50%, -50%);
 }
-
 
 /* Icon box */
 .icon-box {
