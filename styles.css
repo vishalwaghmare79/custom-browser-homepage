@@ -1,0 +1,72 @@
+/* Dark animated background */
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    overflow: hidden;
+    background-color: #1b1b1b;
+    color: white;
+    position: relative;
+}
+
+.container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    gap: 20px;
+    max-width: 800px;
+    height: 37vh;
+    padding: 20px;
+    position: relative;
+    overflow-y: auto;
+    z-index: 2; 
+}
+
+.container {
+    -ms-overflow-style: none;  
+    scrollbar-width: none; 
+  }
+  
+  .container::-webkit-scrollbar {
+    display: none; 
+  }
+  
+
+.particle {
+    position: absolute;
+    background-color: rgba(255, 255, 255, 0.8);
+    clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);   
+    pointer-events: none;
+    z-index: 1; 
+    transform: translate(-50%, -50%);
+}
+
+
+/* Icon box */
+.icon-box {
+    background-color: #333;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+    text-align: center;
+    padding: 15px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+}
+
+.icon-box img {
+    width: 50px;
+    height: 50px;
+}
+
+.icon-box p {
+    margin-top: 10px;
+    font-size: 14px;
+    color: #ddd;
+}
+
+.icon-box:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.7);
+}
