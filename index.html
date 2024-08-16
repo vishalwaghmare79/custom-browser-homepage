@@ -20,7 +20,16 @@
     <div class="particle"></div>
     <div class="particle"></div>
 
+    <!-- Google Search Bar -->
+    <div class="search-bar-container">
+        <form action="https://www.google.com/search" method="get">
+            <input type="text" name="q" placeholder="Search Google..." class="search-bar">
+            <button type="submit" class="search-button">Search</button>
+        </form>
+    </div>
+
     <div class="container">
+        <!-- Existing icons -->
         <div class="icon-box" onclick="window.open('https://www.instagram.com', '_blank')">
             <img src="images/instagram.png" alt="Instagram">
             <p>Instagram</p>
@@ -77,7 +86,13 @@
             <img src="images/trello.png" alt="Trello">
             <p>Trello</p>
         </div>
+    
+        <!-- Add new link icon -->
+        <div class="icon-box" onclick="alert('Add new link functionality coming soon!')">
+            <span class="add-new"></span>
+        </div>
     </div>
+    
 
     <script src="script.js"></script>
 </body>
