@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quick Access Platform</title>
     <link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
 
     <!-- Particles for animated background -->
@@ -75,25 +77,26 @@
             <p>Slack</p>
         </div>
         <div class="icon-box" onclick="window.open('https://www.zoom.us', '_blank')">
-            <img src="images/zoom.png" alt="Zoom">
+            <img src="https://www.zoom.us/favicon.ico" alt="Zoom Favicon">
             <p>Zoom</p>
         </div>
-        <div class="icon-box" onclick="window.open('https://www.dropbox.com', '_blank')">
-            <img src="images/dropbox.png" alt="Dropbox">
-            <p>Dropbox</p>
-        </div>
-        <div class="icon-box" onclick="window.open('https://www.trello.com', '_blank')">
-            <img src="images/trello.png" alt="Trello">
-            <p>Trello</p>
-        </div>
-    
+
         <!-- Add new link icon -->
-        <div class="icon-box" onclick="alert('Add new link functionality coming soon!')">
+        <div class="icon-box" onclick="showForm()">
             <span class="add-new"></span>
         </div>
     </div>
-    
+
+    <!-- Form to add new link -->
+    <div id="linkForm" class="form-container" style="display:none;">
+        <input type="text" id="name" placeholder="Name" required>
+        <input type="url" id="url" placeholder="URL" required>
+        <button onclick="addNewLink()">Add Link</button>
+        <button onclick="closeForm()">Cancel</button>
+    </div>
+
 
     <script src="script.js"></script>
 </body>
+
 </html>

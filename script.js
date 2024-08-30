@@ -113,3 +113,102 @@ function createBlinkingStar() {
 for (let i = 0; i < 100; i++) { // Adjust number of stars as needed
     createBlinkingStar();
 }
+
+// Function to show the form
+function showForm() {
+    document.getElementById('linkForm').style.display = 'block';
+}
+
+// Function to hide the form
+function closeForm() {
+    document.getElementById('linkForm').style.display = 'none';
+}
+
+ // Function to add new link to local storage and display it
+ function addNewLink() {
+    var name = document.getElementById('name').value;
+    var url = document.getElementById('url').value;
+
+    if (name && url) {
+        // Get favicon URL
+        var faviconUrl = new URL('/favicon.ico', url).href;
+
+        // Save to local storage
+        var links = JSON.parse(localStorage.getItem('links')) || [];
+        links.push({ name: name, url: url, favicon: faviconUrl });
+        localStorage.setItem('links', JSON.stringify(links));
+
+        // Clear input fields
+        document.getElementById('name').value = '';
+        document.getElementById('url').value = '';
+
+        // Hide the form
+        closeForm();
+
+        // Display the updated list
+        displayLinks();
+    } else {
+        alert('Please fill in both fields.');
+    }
+}
+
+function displayLinks() {
+    var links = JSON.parse(localStorage.getItem('links')) || [];
+    var linkList = document.querySelector('.container'); // Reference the container element
+    var addNewLinkIcon = document.querySelector('.container .icon-box:last-child'); // Reference the "Add new link" icon
+
+    // Iterate over each link stored in local storage and create the corresponding HTML elements
+    links.forEach(function(link) {
+        // Create a new icon-box element for each link
+        var iconBox = document.createElement('div');
+        iconBox.className = 'icon-box';  // Adding 'icon-box' class to each item
+        iconBox.onclick = function() { window.open(link.url, '_blank'); };
+
+        // Create the image element for the favicon
+        var img = document.createElement('img');
+        img.src = link.favicon;
+        img.alt = link.name + ' Favicon';
+        img.onerror = function() {
+            // Fallback in case favicon is not found
+            img.src = 'https://via.placeholder.com/32?text=F';
+        };
+
+        // Create the paragraph element for the link name
+        var p = document.createElement('p');
+        p.textContent = link.name;
+
+        // Create the remove button
+        var removeBtn = document.createElement('button');
+        removeBtn.className = 'remove-btn';
+        removeBtn.textContent = '×';
+        removeBtn.onclick = function(event) {
+            event.stopPropagation(); // Prevent the click event from bubbling up to the icon-box
+            removeLink(link.url); // Call the function to remove the link from local storage and DOM
+        };
+
+        // Append the image, paragraph, and remove button to the icon-box div
+        iconBox.appendChild(removeBtn);
+        iconBox.appendChild(img);
+        iconBox.appendChild(p);
+
+        // Insert the icon-box div before the "Add new link" icon
+        linkList.insertBefore(iconBox, addNewLinkIcon);
+    });
+}
+
+// Function to remove link from local storage and DOM
+function removeLink(url) {
+    var links = JSON.parse(localStorage.getItem('links')) || [];
+    // Filter out the link with the given URL
+    links = links.filter(link => link.url !== url);
+    localStorage.setItem('links', JSON.stringify(links));
+
+    // Refresh the page
+    window.location.reload();
+}
+
+
+// Load and display links on page load
+window.onload = function() {
+    displayLinks();
+}
